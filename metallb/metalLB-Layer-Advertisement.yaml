@@ -4,5 +4,5 @@ metadata:
   name: orange-home-lab
   namespace: metallb-system
 spec:
-  ipAddressePools:
+  ipAddressPools:
   - first-pool
