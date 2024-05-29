@@ -55,4 +55,4 @@ spec:
               service:
                 name: web-app-3
                 port:
-                number: 80
+                  number: 80
