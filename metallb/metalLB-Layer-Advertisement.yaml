@@ -1,7 +1,7 @@
 apiVersion: metallb.io/v1beta1
 kind: L2Advertisement
 metadata:
-  name: orange-home-lab
+  name: eks-homolog
   namespace: metallb-system
 spec:
   ipAddressPools:
