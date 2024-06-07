@@ -51,9 +51,17 @@ metadata:
   name: hello-world
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+  - hosts:
+    - hello-world.tonnysousa.dev
+    secretName: hello-world-tls
   rules:
-  - host: YUOR_HOST
+  - host: hello-world.tonnysousa.dev
     http:
       paths:
       - path: /

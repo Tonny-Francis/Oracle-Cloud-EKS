@@ -1,11 +1,19 @@
-# Cluster Local K3S Orange PI Zero 2W
+# Kubernets Oracle
 
 ## Hardware
 
-- 2x Orange Pi Zero 2 Quad-core 4GB
-- 1x VMs Ampere A1 Duo-core 4GB
-- 1x VM Ampere A1 Single-Core 4GB
+### Master
+- 1x VM Ampere(Arm) A1 1 OCPU 8GB of Ram and 50GB of Storage
 
+### Workers
+- 1x VM Ampere(Arm) A1 3 OCPU 16GB of Ram and 200GB of Storage
+- 2x VM AMD(x86) 1 OCPU 1GB of Ram and 25 of Storage
+
+### Power Of Computer
+- 5 OCPU 26GB of Ram and 300GB of Storage
+
+### -> ALERT <-
+The CPU and RAM configurations fall within Oracle's usual free policy, but the storage does not fall within the scope due to the use of 300GB and 3 blocks.
 
 ## How To Start
 
