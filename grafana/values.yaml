@@ -34,6 +34,14 @@ alertmanager:
   enabled: true
   ingress:
     enabled: false
+  alertmanagerSpec:
+    resources:
+      requests:
+        cpu: 44m
+        memory: 125Mi
+      limits:
+        cpu: 88m
+        memory: 250Mi
 
 grafana:
   enabled: true
@@ -143,18 +151,20 @@ prometheus-node-exporter:
   resources:
     requests:
       memory: 512Mi
-      cpu: 250m
+      cpu: 34m
     limits:
       memory: 2048Mi
+      cpu: 68m
 
 prometheusOperator:
   enabled: true
   prometheusConfigReloader:
     resources:
       requests:
-        cpu: 200m
+        cpu: 50m
         memory: 50Mi
       limits:
+        cpu: 100m
         memory: 100Mi
 
 prometheus:
@@ -169,6 +179,15 @@ prometheus:
     retention: 168h
     enableAdminAPI: true
     walCompression: true
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: oci-bv
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+        selector: {}
 
 thanosRuler:
   enabled: false
