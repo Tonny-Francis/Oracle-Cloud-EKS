@@ -1,0 +1,14 @@
+loki:
+  config:
+    table_manager:
+      retention_deletes_enabled: true
+      retention_period: 168h
+  persistence:
+    enabled: true
+    storageClassName: oci-bv
+    accessModes:
+      - ReadWriteOnce
+    size: 50Gi
+
+promtail:
+  enabled: true
