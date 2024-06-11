@@ -6,9 +6,9 @@ metadata:
   labels:
     app: postgres
 spec:
-  storageClassName: oci-bv
+  storageClassName: oci-fss
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
