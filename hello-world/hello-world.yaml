@@ -58,10 +58,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - hello-world.tonnysousa.dev
+    - YOUR_DNS
     secretName: hello-world-tls
   rules:
-  - host: hello-world.tonnysousa.dev
+  - host: YOUR_DNS
     http:
       paths:
       - path: /

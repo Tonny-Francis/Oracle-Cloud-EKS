@@ -1,55 +1,75 @@
-# Kubernets Oracle
+# Kubernetes Oracle
 
-## Hardware
+### Computing Resources
+- 3x Virtual Machine VM.Standard.A1.Flex 1 OCPU 7GB RAM
+- 1x Virtual Machine VM.Standard.A1.Flex 1 OCPU 3GB RAM
+- 1x LoadBalancer 10Mb/s
+- 7x Block Volume of 50GB
 
-### Master
-- 1x VM Ampere(Arm) A1 1 OCPU 8GB of Ram and 50GB of Storage
+### Resource Distribution
 
-### Workers
-- 1x VM Ampere(Arm) A1 3 OCPU 16GB of Ram and 200GB of Storage
-- 2x VM AMD(x86) 1 OCPU 1GB of Ram and 25 of Storage
+#### OKE - Oracle Kubernetes Engine
+- 3x Virtual Machine VM.Standard.A1.Flex 1 OCPU 7GB RAM - Workers
+- 3x Block Volumes of 50GB
 
-### Power Of Computer
-- 5 OCPU 26GB of Ram and 300GB of Storage
+#### Rancher - EKS Management
+- 1x Virtual Machine VM.Standard.A1.Flex 1 OCPU 3GB RAM
+- 1x Boot Volume of 50GB
 
-### -> ALERT <-
-The CPU and RAM configurations fall within Oracle's usual free policy, but the storage does not fall within the scope due to the use of 300GB and 3 blocks.
+#### Monitoring EKS
+##### Prometheus
+- 1x Block Volume of 50GB
 
-## How To Start
+##### Loki
+- 1x Block Volume of 50GB
 
-### Install K3s Master
-Run this command to install k3s as master
+##### Grafana
+- 1x Block Volume of 50GB
 
-```sh
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.28.9+k3s1" sh -
-```
+#### NGINX Ingress - Exporting Resource Access
+- 1x LoadBalancer 10Mb/s
 
-It is possible to specify a specific [VERSION](https://docs.k3s.io/release-notes/v1.28.X) of k3s using the flag `INSTALL_K3S_VERSION`.
+### Notice
+Virtual Machine and Network resources are within Oracle's free tier package. However, the use of Block Volumes exceeds the free tier limits, costs are at your own risk when following this Git.
 
-After running the above command, the K3s master cluster will be operational.
+### Use Of Resources By Installing The Basic For The EKS
+<div>
+    <img src="https://github.com/Tonny-Francis/Oracle-Cloud-EKS/assets/81640351/ae98da2a-c0ac-4743-8b58-fc4a653fc80c"/>
+</div>
 
-### Install K3s Workers
 
-Run this command to install k3s as worker
+### Notes Of Version
+The version of EKS that I installed, v1.29.1, does not support the installation of Rancher within the cluster, which is why Rancher is in a separate VM. However, to optimize resources, I recommend installing compatible versions.
 
-```sh
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="v1.28.9+k3s1" K3S_URL=https://<MASTER_IP>:6443 K3S_TOKEN=<NODE_TOKEN> sh -
-```
-To install a k3s worker we will need some details like MASTER_IP and NODE_TOKEN
+### Understanding How OKE Works and Creating It
 
-#### Get MASTER_IP
-Run this command in master
+- [Oracle](https://docs.oracle.com/pt-br/iaas/Content/ContEng/Concepts/contengoverview.htm)
+- [Overview and Creation](https://docs.oracle.com/pt-br/iaas/Content/ContEng/Concepts/contengoverview.htm)
 
-```sh
-hostname -I
-```
+### Understanding PV and PVC in Kubernetes
 
-#### Get NODE_TOKEN
+- [Kubernetes](https://kubernetes.io/pt-br/docs/concepts/storage/persistent-volumes/)
 
-Run this command in master
+### Understanding Storage Class
 
-```sh
-sudo cat /var/lib/rancher/k3s/server/node-token
-```
+- [Kubernetes](https://kubernetes.io/docs/concepts/storage/storage-classes/)
 
-After completing the command line with the appropriate information about the master node, the worker will be installed and connected to the master node.
+### Understanding Ingress Controller and LoadBalancer and Creating It
+Note: The Load Balancer part using MetalLB is just for understanding, Oracle already provides Load Balancer when using OKE
+- [YouTube Video](https://youtu.be/k8bxtsWe9qw?si=ENxSe7YrFVZypENw)
+
+### Understanding Cert Manger and Creating It
+
+- [Youtube Video](https://youtu.be/Xv1bdeVnGGY?si=qV7BPeuOXq7OhHSr)
+
+### Understanding Monitoring EKS
+Note: In this git you can find custom values ​​for monitoring installation, such as data persistence and resource optimization.
+- [Youtube Video](https://youtu.be/fzny5uUaAeY?si=gHp_KLl4SSFwWwk6)
+
+### Understanding Helm
+
+- [Article](https://circleci.com/blog/what-is-helm/)
+
+### Installation Rancher in Docker
+
+- [Rancher](https://www.rancher.com/quick-start)

@@ -4,7 +4,7 @@ metadata:
   name: test-certificate
 spec:
   dnsNames:
-    - test.tonnysousa.dev
+    - YOUR_DNS_TEST_DOMAIN
   secretName: test-certificate-tls
   duration: 24h
   renewBefore: 12h

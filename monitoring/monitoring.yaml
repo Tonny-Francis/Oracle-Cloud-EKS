@@ -59,7 +59,7 @@ grafana:
   ingress:
     enabled: true
     hosts:
-      - grafana.tonnysousa.dev
+      - YOUR_DNS
     annotations:
       kubernetes.io/ingress.class: "nginx"
     path: /
