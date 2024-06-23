@@ -1,0 +1,5 @@
+elasticsearch
+.DS_Store
+
+# Ignore file sensitive information
+cert-manager/cloudflare.yaml
