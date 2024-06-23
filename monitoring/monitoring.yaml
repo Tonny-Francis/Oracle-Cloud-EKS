@@ -60,9 +60,14 @@ grafana:
     enabled: true
     hosts:
       - YOUR_DNS
+    ingressClassName: nginx
     annotations:
-      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: letsencrypt-production
     path: /
+    tls:
+      - secretName: grafana.YOUR_DNS
+        hosts:
+          - YOUR_DNS
   persistence:
     enabled: true
     type: sts
